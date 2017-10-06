@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace ConsoleApp
 {
@@ -11,9 +7,17 @@ namespace ConsoleApp
     {
         private static void Main(string[] args)
         {
-            var cts = new CancellationTokenSource();
+            Console.WriteLine("Starts");
+            Do();
+            Console.WriteLine("Finished");
+            Console.ReadLine();
+        }
 
-            var result = WebClientAsync.AwaitWebClient(new Uri("uri"), cts.Token);
+        private static async void Do()
+        {
+            var cts = new CancellationTokenSource();
+            var result = await WebClientAsync.AwaitWebClient(new Uri("http://tut.by"), cts.Token);
+            Console.WriteLine(result);
         }
     }
 }

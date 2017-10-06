@@ -27,13 +27,13 @@ namespace ConsoleApp
             };
 
             wc.DownloadStringAsync(uri);
-            ct.Register(() =>
+            var callback = ct.Register(() =>
             {
-                // this callback will be executed when token is cancelled
-                tcs.TrySetCanceled();
+                wc.CancelAsync();
             });
             var result = await tcs.Task;
 
+            callback.Dispose();
             return result;
         }
     }
