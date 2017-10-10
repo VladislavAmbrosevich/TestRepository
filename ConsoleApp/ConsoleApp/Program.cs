@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -9,9 +10,11 @@ namespace ConsoleApp
         private static void Main(string[] args)
         {
             Console.WriteLine("Starts");
-            Do(Print);
+//            Do(Print);
 //            Print();
+            TestLinq();
             Console.ReadLine();
+
         }
 
         private static void Do(Action action)
@@ -27,6 +30,14 @@ namespace ConsoleApp
         private static void Print()
         {
             Console.WriteLine("Finished");
+        }
+
+        private static void TestLinq()
+        {
+            var list = new List<int>{1,3,5,7,9};
+            var query = list.Where(x => x > 3);
+            var newList = query.ToList();
+            Console.WriteLine(newList[0]);
         }
     }
 }
