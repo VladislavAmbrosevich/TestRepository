@@ -28,5 +28,16 @@ namespace WindowsFormsApp1
             //            return await msg.Content.ReadAsStringAsync().ConfigureAwait(false);
             return await msg.Content.ReadAsStringAsync();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DoAsync().Wait();
+            MessageBox.Show(@"Hello");
+        }
+
+        private static async Task DoAsync()
+        {
+            await Task.Delay(1000);
+        }
     }
 }
